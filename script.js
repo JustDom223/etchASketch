@@ -1,12 +1,16 @@
-let container = document.createElement('div')
-container.id = 'container'
-container.textContent('this is a test')
+let container = document.createElement('div');
+container.className = 'container';
+document.body.appendChild(container);
 
-
-
-document.body.appendChild(container)
-
-
-function createPad() {
-
+function whiteboard() {
+    let numberOfDivs = 256;
+    for (let n = 0; n < numberOfDivs; n++) {
+        const pixel = document.createElement('div');
+        pixel.className = 'pixel';
+        container.appendChild(pixel);
+    } 
 }
+
+let pixel = whiteboard();
+
+pixel.onmouseover =  console.log('EYYY')
