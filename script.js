@@ -1,13 +1,36 @@
-const whiteBoard = document.getElementById('whiteBoard')
-const eraseButton = document.getElementById('eraseButton')
-const blackButton = document.getElementById('blackButton')
-const rainbowButton = document.getElementById('rainbowButton')
+const whiteBoardElement = document.getElementById('whiteBoard');
+const eraseButtonElement = document.getElementById('eraseButton');
+const blackButtonElement = document.getElementById('blackButton');
+const rainbowButtonElement = document.getElementById('rainbowButton');
+const sliderElement = document.getElementById('slider')
+
 
 
 // variables 
-let gridSize = 156
+let gridSize = 16;
+let rainbowBrush = true;
+let blackBrush = 'black';
+
+// clear the board
+function clearBoard(){
+  const pixels = document.querySelectorAll('.pixel');
+  pixels.forEach(function(pixel) {
+    pixel.style.background = 'white'
+  });
+}
 
 
+// Function to generate a random hex color code
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  
+  return color;
+}
 
 // Function to create a whiteboard with a specified number of pixels
 function createWhiteboard(numDiv) {
@@ -16,36 +39,57 @@ function createWhiteboard(numDiv) {
     pixel.className = 'pixel';
     pixel.style.width = `${500 / numDiv}px`
     pixel.style.height = `${500 / numDiv}px`
-  
-
+    
+    
     // Add a mouseover event listener to change the background to a random color
     pixel.addEventListener('mouseover', function () {
-      // let randomColor = getRandomColor();
-      pixel.style.background = 'black' //randomColor;
+      let randomColor = getRandomColor();
+      if (rainbowBrush === true){
+        pixel.style.background = randomColor
+      }else{
+        pixel.style.background = 'black' 
+        
+      }
+      
     });
-
-    whiteBoard.appendChild(pixel);
+    
+    whiteBoardElement.appendChild(pixel);
   }
 }
 
 
+eraseButtonElement.addEventListener('click', clearBoard)
+rainbowButtonElement.addEventListener('click', function(){
+  rainbowBrush = true
+});
 
+blackButtonElement.addEventListener('click', function(){
+  rainbowBrush = false
+});
 
+sliderElement.addEventListener('input', function(){
+  const sliderValue = parseInt(sliderElement.value);
 
+  switch(sliderValue){
+    case 1:
+      gridSize = 16;
+      break;
+    case 2:
+      gridSize = 24;
+      break;
+    case 3:
+      gridSize = 32;
+      break;
+    case 4:
+      gridSize = 64;
+      break;
+      
+  }
+  createWhiteboard(gridSize)
+})
 
 createWhiteboard(gridSize)
 
-
-// // Create a button and place it in the top of the 
-// const generateBoardButton = document.createElement('button')
-// generateBoardButton.className = 'generateBoardButton'
-// generateBoardButton.textContent = 'Click to change grid size'
-// generateBoardButton.addEventListener('click', gridSizeButton)
-// document.body.appendChild(generateBoardButton)
-
-
-
-// // Create a 
 
 // // Create a whiteboard div and append it to the body
 // const whiteboard = document.getElementById('whiteboard')
@@ -55,24 +99,11 @@ createWhiteboard(gridSize)
 
 // // Function to adjust the size of the grid
 // function gridSizeButton(){
-//     boardSize = prompt('What size grid would you like? eg. 10 = 10*10')
-//     createWhiteboard(boardSize)
-//     adjustBoardSize(boardSize)
-// }
-
-
-// // Function to generate a random hex color code
-// function getRandomColor() {
-//   const letters = '0123456789ABCDEF';
-//   let color = '#';
+  //     boardSize = prompt('What size grid would you like? eg. 10 = 10*10')
+  //     createWhiteboard(boardSize)
+  //     adjustBoardSize(boardSize)
+  // }
   
-//   for (let i = 0; i < 6; i++) {
-//     color += letters[Math.floor(Math.random() * 16)];
-//   }
-  
-//   return color;
-// }
-
 // // Function to adjust the board size
 // function adjustBoardSize(gridSize) {
 //   whiteboard.style.maxWidth = `${10 * gridSize}px`;
