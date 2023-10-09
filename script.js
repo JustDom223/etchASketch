@@ -19,7 +19,6 @@ function clearBoard(){
   });
 }
 
-
 // Function to generate a random hex color code
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
@@ -31,6 +30,13 @@ function getRandomColor() {
   
   return color;
 }
+
+
+// // Clear the whiteboards existing grid to make room to the adjusted settings
+// function removeBoard(){
+//   whiteBoardElement.replaceChild();
+// }
+
 
 // Function to create a whiteboard with a specified number of pixels
 function createWhiteboard(numDiv) {
@@ -56,6 +62,7 @@ function createWhiteboard(numDiv) {
     whiteBoardElement.appendChild(pixel);
   }
 }
+
 
 
 eraseButtonElement.addEventListener('click', clearBoard)
@@ -85,10 +92,11 @@ sliderElement.addEventListener('input', function(){
       break;
       
   }
-  createWhiteboard(gridSize)
+  whiteBoardElement.innerHTML = '';
+  createWhiteboard(gridSize);
 })
 
-createWhiteboard(gridSize)
+createWhiteboard(gridSize);
 
 
 // // Create a whiteboard div and append it to the body
