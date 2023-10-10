@@ -31,13 +31,6 @@ function getRandomColor() {
   return color;
 }
 
-
-// // Clear the whiteboards existing grid to make room to the adjusted settings
-// function removeBoard(){
-//   whiteBoardElement.replaceChild();
-// }
-
-
 // Function to create a whiteboard with a specified number of pixels
 function createWhiteboard(numDiv) {
   for (let n = 0; n < numDiv * numDiv; n++) {
@@ -62,7 +55,6 @@ function createWhiteboard(numDiv) {
     whiteBoardElement.appendChild(pixel);
   }
 }
-
 
 
 eraseButtonElement.addEventListener('click', clearBoard)
@@ -97,26 +89,3 @@ sliderElement.addEventListener('input', function(){
 })
 
 createWhiteboard(gridSize);
-
-
-// // Create a whiteboard div and append it to the body
-// const whiteboard = document.getElementById('whiteboard')
-// whiteboard.className = 'whiteboard';
-// document.body.appendChild(whiteboard);
-
-
-// // Function to adjust the size of the grid
-// function gridSizeButton(){
-  //     boardSize = prompt('What size grid would you like? eg. 10 = 10*10')
-  //     createWhiteboard(boardSize)
-  //     adjustBoardSize(boardSize)
-  // }
-  
-// // Function to adjust the board size
-// function adjustBoardSize(gridSize) {
-//   whiteboard.style.maxWidth = `${10 * gridSize}px`;
-// }
-
-// let boardSize = 16;
-// createWhiteboard(boardSize);
-// adjustBoardSize(boardSize);
